@@ -1,0 +1,72 @@
+server:
+  port: 9009
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/auto-code?useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    database: 8
+#  data:
+#    elasticsearch:
+#      repositories:
+#        enabled: true
+  #配置rabbitMq 服务器
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+    # 消息确认配置
+    #确认消息已发送到队列(Queue)
+    publisher-returns: true
+    #确认消息已发送到交换机(Exchange)
+    publisher-confirm-type: correlated
+  groovy:
+    template:
+      cache: false
+      prefix:
+        classpath: /templates
+
+
+
+
+# knife4j
+knife4j:
+  enable: true
+
+security:
+  basic:
+    enabled: false
+
+
+
+mybatis-plus:
+  mapper-locations: classpath*:org/clxmm/autocode/autocode/mapper/**/*.xml
+
+logging:
+  level:
+    org.clxmm.autocode.autocode.mapper: debug
+
+
+jwt:
+  tokenHeader: Authorization #JWT存储的请求头
+  secret: mall-admin-secret #JWT加解密使用的密钥
+  expiration: 28800 #JWT的超期限时间(60*60*24)
+  tokenHead: 'Bearer '  #JWT负载中拿到开头
+
+file:
+  minio:
+    url: http:\\8.136.154.60:9010
+    accessKey: clx
+    secretKey: clxminio2022
+
+
+secure:
+  ignored:
+    urls:
+      - /tes
+      - /login
+      - /stomp/**
+      - /user/**
